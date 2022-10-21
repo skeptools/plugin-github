@@ -9,10 +9,14 @@ const project = new typescript.TypeScriptProject({
   deps: [
     '@cdktf/provider-github@~3',
     '@skeptools/skep-core@~0',
+    'cdktf@~0',
     'constructs@~10',
   ],
-  devDeps: [
+  peerDeps: [
+    '@cdktf/provider-github@~3',
+    '@skeptools/skep-core@~0',
     'cdktf@~0',
+    'constructs@~10',
   ],
   gitignore: [
     '*.d.ts',

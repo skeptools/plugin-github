@@ -20,11 +20,6 @@
       "type": "build"
     },
     {
-      "name": "cdktf",
-      "version": "~0",
-      "type": "build"
-    },
-    {
       "name": "eslint-import-resolver-node",
       "type": "build"
     },
@@ -93,10 +88,35 @@
     {
       "name": "@cdktf/provider-github",
       "version": "~3",
+      "type": "peer"
+    },
+    {
+      "name": "@skeptools/skep-core",
+      "version": "~0",
+      "type": "peer"
+    },
+    {
+      "name": "cdktf",
+      "version": "~0",
+      "type": "peer"
+    },
+    {
+      "name": "constructs",
+      "version": "~10",
+      "type": "peer"
+    },
+    {
+      "name": "@cdktf/provider-github",
+      "version": "~3",
       "type": "runtime"
     },
     {
       "name": "@skeptools/skep-core",
+      "version": "~0",
+      "type": "runtime"
+    },
+    {
+      "name": "cdktf",
       "version": "~0",
       "type": "runtime"
     },

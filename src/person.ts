@@ -5,7 +5,7 @@ import { Organization } from './organization';
 
 export interface PersonProps extends BaseProps {
   readonly admin?: boolean;
-  readonly username?: string;
+  readonly username: string;
 }
 
 export class Person<
@@ -20,15 +20,13 @@ export class Person<
   ) {
     super(scope, namespace, config);
 
-    if (this._props.username) {
-      new github.membership.Membership(this, `${namespace}-membership`, {
-        username: this._props.username,
-        role: this._props.admin ? 'admin' : 'member',
-      });
-    }
+    new github.membership.Membership(this, `${namespace}-membership`, {
+      username: this._props.username,
+      role: this._props.admin ? 'admin' : 'member',
+    });
   }
 
-  get username(): string | undefined {
+  get username(): string {
     return this._props.username;
   }
 }

@@ -9,6 +9,7 @@ export * from './person';
 export * from './team';
 export interface ProviderParametersType {
   readonly token: string;
+  readonly organization: string;
 }
 
 export class Factory<
@@ -32,6 +33,9 @@ export class Factory<
   teamConstructor = Team;
   providerParameters: ProviderParameters<keyof ProviderParametersType> = {
     token: {
+      type: 'string',
+    },
+    organization: {
       type: 'string',
     },
   };

@@ -1,30 +1,24 @@
-import { typescript } from 'projen';
+import { SkepPluginProject } from '@skeptools/skep-plugin-project';
 import { NpmAccess } from 'projen/lib/javascript';
-const project = new typescript.TypeScriptProject({
+
+const majorVersion = 0;
+const project = new SkepPluginProject({
+  cdktfProviderPackage: '@cdktf/provider-github@~3',
   defaultReleaseBranch: 'main',
+  devDeps: ['@skeptools/skep-plugin-project@~0'],
   name: '@skeptools/plugin-github',
   projenrcTs: true,
   releaseToNpm: true,
   npmAccess: NpmAccess.PUBLIC,
-  deps: [
-    '@cdktf/provider-github@~3',
-    '@skeptools/skep-core@~0',
-    'cdktf@~0',
-    'constructs@~10',
-  ],
-  peerDeps: [
-    '@cdktf/provider-github@~3',
-    '@skeptools/skep-core@~0',
-    'cdktf@~0',
-    'constructs@~10',
-  ],
-  gitignore: [
-    '*.d.ts',
-    '*.js',
-    'cdktf.out',
-    'terraform.tfstate*',
-    '.gen',
-  ],
+  majorVersion,
+  releaseBranches: {
+    dev: { prerelease: 'dev', npmDistTag: 'dev', majorVersion },
+  },
+  depsUpgradeOptions: {
+    workflowOptions: {
+      branches: ['main'],
+    },
+  },
 
   // deps: [],                /* Runtime dependencies of this module. */
   // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */

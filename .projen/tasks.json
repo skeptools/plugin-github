@@ -140,7 +140,34 @@
       "name": "release",
       "description": "Prepare a release from \"main\" branch",
       "env": {
-        "RELEASE": "true"
+        "RELEASE": "true",
+        "MAJOR": "0"
+      },
+      "steps": [
+        {
+          "exec": "rm -fr dist"
+        },
+        {
+          "spawn": "bump"
+        },
+        {
+          "spawn": "build"
+        },
+        {
+          "spawn": "unbump"
+        },
+        {
+          "exec": "git diff --ignore-space-at-eol --exit-code"
+        }
+      ]
+    },
+    "release:dev": {
+      "name": "release:dev",
+      "description": "Prepare a release from \"dev\" branch",
+      "env": {
+        "RELEASE": "true",
+        "MAJOR": "0",
+        "PRERELEASE": "dev"
       },
       "steps": [
         {
@@ -209,19 +236,19 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='@cdktf/provider-github,@skeptools/skep-core,cdktf,constructs'"
+          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='@skeptools/skep-plugin-project,projen,@cdktf/provider-github,@skeptools/skep-core,cdktf,constructs'"
         },
         {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='@cdktf/provider-github,@skeptools/skep-core,cdktf,constructs'"
+          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='@skeptools/skep-plugin-project,projen,@cdktf/provider-github,@skeptools/skep-core,cdktf,constructs'"
         },
         {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='@cdktf/provider-github,@skeptools/skep-core,cdktf,constructs'"
+          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='@skeptools/skep-plugin-project,projen,@cdktf/provider-github,@skeptools/skep-core,cdktf,constructs'"
         },
         {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='@cdktf/provider-github,@skeptools/skep-core,cdktf,constructs'"
+          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='@skeptools/skep-plugin-project,projen,@cdktf/provider-github,@skeptools/skep-core,cdktf,constructs'"
         },
         {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='@cdktf/provider-github,@skeptools/skep-core,cdktf,constructs'"
+          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='@skeptools/skep-plugin-project,projen,@cdktf/provider-github,@skeptools/skep-core,cdktf,constructs'"
         },
         {
           "exec": "yarn install --check-files"

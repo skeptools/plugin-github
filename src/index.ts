@@ -9,7 +9,7 @@ export * from './person';
 export * from './team';
 export interface ProviderParametersType {
   readonly token: string;
-  readonly organization: string;
+  readonly owner: string;
 }
 
 export class Factory<
@@ -35,7 +35,7 @@ export class Factory<
     token: {
       type: 'string',
     },
-    organization: {
+    owner: {
       type: 'string',
     },
   };

@@ -57,10 +57,7 @@ const organization: OrganizationProps<Integrations> = {
   name: 'Test',
   integrations: {
     github: {
-      rootTeamIds: {
-        guild: 1234,
-        team: 5678,
-      },
+      rootTeams: ['guild', 'team'],
     },
   },
 };
